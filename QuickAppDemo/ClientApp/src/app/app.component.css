@@ -1,0 +1,9 @@
+/* @import '/ClientApp/node_modules/@swimlane/ngx-datatable/release/themes/material.css'; */
+
+
+@media (max-width: 767px) {
+  /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */
+  .body-content {
+    padding-top: 50px;
+  }
+}
