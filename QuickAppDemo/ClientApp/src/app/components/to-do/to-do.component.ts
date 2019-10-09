@@ -18,10 +18,10 @@ export class ToDoComponent implements OnInit {
   @ViewChild('template2', {static: false})
   template2: TemplateRef<any>;
 
-  @ViewChild('statusHeaderTemplate', {static: false})
+  @ViewChild('statusHeaderTemplate', {static: true})
   statusHeaderTemplate: TemplateRef<any>;
 
-  @ViewChild('statusTemplate', {static: false})
+  @ViewChild('statusTemplate', {static: true})
   statusTemplate: TemplateRef<any>;
 
   constructor(private todoService: ToDoService, private modalService: BsModalService) { }
@@ -31,15 +31,47 @@ export class ToDoComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    // this.fetch((data) => {
+    //   this.rows = data;
+    // });
+
     this.getAllTask();
 
     this.columns = [
-      { prop : 'completed', name: '', width: 30, headerTemplate: this.statusHeaderTemplate, cellTemplate: this.statusTemplate},
+      { prop : 'isCompleted', name: '', width: 30, headerTemplate: this.statusHeaderTemplate, cellTemplate: this.statusTemplate},
       { prop : 'task', name: 'Task'},
       { prop : 'description', name: 'Description'},
       { prop : 'isImportant', name: 'Is Important' }
     ];
   }
+
+
+  fetch(cb) {
+    let data = this.getAllTask();
+
+    if (data == null) {
+        setTimeout(() => {
+
+            data = this.getAllTask();
+
+            if (data == null) {
+                data = [
+                    { 'isCompleted': true, 'isImportant': true, 'task': 'Create visual studio extension', 'description': 'Create a visual studio VSIX extension package that will add this project as an aspnet-core project template' },
+                    { 'isCompleted': false, 'isImportant': true, 'task': 'Do a quick how-to writeup', 'description': '' },
+                    {
+                        'isCompleted': false, 'isImportant': false, 'task': 'Create aspnet-core/angular7 tutorials based on this project', 'description': 'Create tutorials (blog/video/youtube) on how to build applications (full stack)' +
+                            ' using aspnet-core/angular7. The tutorial will focus on getting productive with the technology right away rather than the details on how and why they work so audience can get onboard quickly.'
+                    },
+                ];
+            }
+
+            cb(data);
+        }, 1000);
+    } else {
+        cb(data);
+    }
+}
 
   getAllTask() {
     this.todoService.getAllTasks().subscribe(
