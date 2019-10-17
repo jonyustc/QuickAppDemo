@@ -1,0 +1,4 @@
+<div class="color-me">
+    <input type="text" #input (keyup)="0" [value]="colors">
+    <div class="color-panel" [ngStyle]="{'background-color':input.value}"></div>
+</div>

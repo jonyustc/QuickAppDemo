@@ -47,31 +47,7 @@ export class ToDoComponent implements OnInit {
   }
 
 
-  fetch(cb) {
-    let data = this.getAllTask();
 
-    if (data == null) {
-        setTimeout(() => {
-
-            data = this.getAllTask();
-
-            if (data == null) {
-                data = [
-                    { 'isCompleted': true, 'isImportant': true, 'task': 'Create visual studio extension', 'description': 'Create a visual studio VSIX extension package that will add this project as an aspnet-core project template' },
-                    { 'isCompleted': false, 'isImportant': true, 'task': 'Do a quick how-to writeup', 'description': '' },
-                    {
-                        'isCompleted': false, 'isImportant': false, 'task': 'Create aspnet-core/angular7 tutorials based on this project', 'description': 'Create tutorials (blog/video/youtube) on how to build applications (full stack)' +
-                            ' using aspnet-core/angular7. The tutorial will focus on getting productive with the technology right away rather than the details on how and why they work so audience can get onboard quickly.'
-                    },
-                ];
-            }
-
-            cb(data);
-        }, 1000);
-    } else {
-        cb(data);
-    }
-}
 
   getAllTask() {
     this.todoService.getAllTasks().subscribe(
@@ -120,18 +96,5 @@ export class ToDoComponent implements OnInit {
       }
     );
   }
-
-  // tslint:disable-next-line: member-ordering
-  rows = [
-    { name: 'Austin', gender: 'Male', company: 'Swimlane' },
-    { name: 'Dany', gender: 'Male', company: 'KFC' },
-    { name: 'Molly', gender: 'Female', company: 'Burger King' },
-  ];
-  // tslint:disable-next-line: member-ordering
-  columns = [
-    { prop: 'name' },
-    { name: 'Gender' },
-    { name: 'Company' }
-  ];
 
 }
