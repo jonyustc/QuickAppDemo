@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row">
+        <div class="offset-md-3 col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Login Form</div>
+                </div>
+                <div class="card-body">
+                    <div class="login-form">
+                        <div *ngIf="error" class="alert alert-danger">
+                            {{error}}
+                        </div>
+                        <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
+                            <div class="form-group">
+                                <input type="text" class="form-control" required placeholder="username" [(ngModel)]="loginModel.UserName"
+                                 name="UserName" #username="ngModel">
+                                 <div class="alert alert-danger" *ngIf="username.invalid && loginForm.submitted">
+                                   UserName is Required
+                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" required placeholder="passoword"
+                                 [(ngModel)]="loginModel.Passoword" name=Password #password="ngModel">
+                                 <div class="alert alert-danger" *ngIf="password.invalid && loginForm.submitted">
+                                    Password is Required
+                                  </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Sumbit</button>
+                            <a [routerLink]="['/register']" class="btn btn-success">SignUp</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+</div>
+
+

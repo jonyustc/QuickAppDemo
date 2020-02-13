@@ -8,6 +8,8 @@ namespace DAL
         readonly ApplicationDbContext _context;
 
         IToDoRepository _toDo;
+        ILoginRepository _login;
+        IRegistrationRepository _registration;
 
         public UnitOfWork(ApplicationDbContext context)
         {
@@ -25,6 +27,27 @@ namespace DAL
 
                 return _toDo;
            }
+        }
+
+        public ILoginRepository Logins
+        {
+            get{
+                if(_login==null)
+                    _login=new LoginRepository(_context);
+                
+                return _login;
+            }
+        }
+
+        public IRegistrationRepository Users
+        {
+            get
+            {
+                if(_registration==null)
+                    _registration=new RegistrationRepository(_context);
+                
+                return _registration;
+            }
         }
 
         public int SaveChanges(){

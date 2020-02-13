@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit, Input, TemplateRef } from '@angular/core';
 
 @Component({
   selector: 'app-cards-list',
@@ -7,8 +7,8 @@ import { Component, OnInit,Input } from '@angular/core';
 })
 export class CardsListComponent implements OnInit {
   @Input() public data: any;
-  @Input() public cardRef: any;
-  @Input() public tableRef: any;
+  @Input() public listCardRef: any;
+  @Input() public listTableRef: any;
 
   private preferedShowModeKey = 'typeToShow';
   public get typeToShow(): string {

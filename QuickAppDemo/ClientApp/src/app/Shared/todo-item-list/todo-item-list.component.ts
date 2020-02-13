@@ -11,7 +11,7 @@ export class TodoItemListComponent implements OnInit {
   @Input() public todoItem: ToDo;
   @Input() public readOnlyTODO: boolean;
   @Output() public todoDelete = new EventEmitter();
-  @Output() public todoEdit = new EventEmitter();
+  @Output() public todoEdit = new EventEmitter<ToDo>();
   @Output() public todoComplete = new EventEmitter<ToDo>();
 
   constructor() { }

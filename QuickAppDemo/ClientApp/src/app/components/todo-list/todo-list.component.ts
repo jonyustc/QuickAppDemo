@@ -9,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodoListComponent implements OnInit {
   public todoList$ = this.todoListService.getAllTasks();
+  todoItem:any;
+  // tslint:disable-next-line: no-unused-expression
+  public selectedListForEdit$ = new ToDo();
   constructor(private todoListService:ToDoService) { }
 
   ngOnInit() {
+    // this.selectedListForEdit$=todoItem;
+    this.todoListService.getTask(1).subscribe((data:ToDo)=>{
+      console.log(data);
+    });
   }
 
   public deleteTodo(id: number) {
@@ -19,11 +26,19 @@ export class TodoListComponent implements OnInit {
   }
 
   public setTodoForEdit(todoItem: ToDo) {
-    this.todoListService.UpdateTodoTask(todoItem);
+    console.log(this.selectedListForEdit$);
+    this.selectedListForEdit$ = todoItem;
   }
 
   public todoItemEdit(todoItem: ToDo) {
-    this.todoListService.UpdateTodoTask(todoItem);
+      this.todoListService.getTask(todoItem.id);
+    // this.todoListService.UpdateTodoTask(todoItem);
+  }
+
+  public updatetoDo(todoItem: ToDo){
+    this.todoListService.UpdateTodoTask(todoItem).subscribe(res=>{
+        console.log('updated');
+    });
   }
 
   public trackByFn(index, item) {

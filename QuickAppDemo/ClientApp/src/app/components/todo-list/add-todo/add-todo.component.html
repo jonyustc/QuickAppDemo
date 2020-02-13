@@ -1,0 +1,17 @@
+<form (ngSubmit)="onTaskUpdate()" #taskUpdateForm="ngForm">
+    <div class="form-group">
+      <label for="task">Task Name</label>
+      <!-- <input type="hidden" [(ngModel)]="taskEdit.id" name="id"> -->
+      <input type="text" class="form-control" id="task" name="task" required [(ngModel)]="currentToDo.task" #task="ngModel">
+      <div [hidden]="task.valid || task.pristine" class="alert alert-danger">Task Name Required</div>
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input type="text" class="form-control" id="description" name="description" [(ngModel)]="currentToDo.description" #desc="ngModel">
+    </div>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" name="isImportant" id="isImportant" [(ngModel)]="currentToDo.isImportant">
+      <label for="isImportant" class="form-check-lable">Is Important</label>
+    </div>
+    <button type="submit" class="btn btn-success" [disabled]="!taskUpdateForm.form.valid">Update</button>
+  </form>

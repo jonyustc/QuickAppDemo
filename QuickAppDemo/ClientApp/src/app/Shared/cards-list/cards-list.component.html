@@ -8,7 +8,7 @@
   </div>
 
 
-<ng-container *ngIf="typeToShow === 'cards'">
+<!-- <ng-container *ngIf="typeToShow === 'cards'">
   <app-todo-item-card [todoItem]="data" (todoDelete)="deleteTodo($event)" (todoEdit)="setTodoForEdit($event)">
   </app-todo-item-card>
 </ng-container>
@@ -19,13 +19,23 @@
       (todoDelete)="deleteTodo($event)" (todoComplete)="todoItemEdit ($event)" (editClick)="setTodoForEdit($event)">
     </app-todo-item-list>
   </ul>
-</ng-container>
+</ng-container> -->
 
-  <!-- <ng-container *ngIf="typeToShow === 'table'">
-    <app-list [tableRef]="tableRef" [data]="data">
-    </app-list>
-  </ng-container>
+  <!-- <ng-container *ngIf="typeToShow === 'table'"> -->
+
+      <!-- <ng-container *ngIf="typeToShow === 'table'" [ngTemplateOutlet]="listTableRef"
+       [ngTemplateOutletContext]="{listData: listData}"></ng-container> -->
+
+    <!-- <app-list [tableRef]="listTableRef" [data]="listData">
+    </app-list> -->
+  <!-- </ng-container> -->
+
+  <ng-container *ngIf="typeToShow === 'table'">
+      <app-list [tableRef]="listTableRef" [data]="data"></app-list>
+      
+    </ng-container>
+
   <ng-container *ngIf="typeToShow === 'cards'">
-    <app-card [cardRef]="cardRef" [data]="data"></app-card>
-  </ng-container> -->
+    <app-card [cardRef]="listCardRef" [data]="data"></app-card>
+  </ng-container>
   

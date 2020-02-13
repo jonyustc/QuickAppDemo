@@ -3,12 +3,14 @@ using AutoMapper;
 using DAL;
 using DAL.Models;
 using DAL.Repositories.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using QuickAppDemo.ViewModels;
 
 namespace QuickAppDemo.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     public class ToDoController : Controller
     {
         private IMapper _mapper;

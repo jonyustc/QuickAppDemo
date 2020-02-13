@@ -9,6 +9,10 @@ namespace QuickAppDemo
         public AutoMapperProfile()
         {
             CreateMap<ToDo,ToDoViewModel>().ReverseMap();
+            CreateMap<RegistrationViewModel,UserProfile>();
+            CreateMap<RegistrationViewModel,User>()
+                .ForMember(dest => dest.UserProfile,opt=>
+                opt.MapFrom(src=>src));
         }
     }
 }
